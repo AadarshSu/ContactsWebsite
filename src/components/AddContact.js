@@ -1,6 +1,7 @@
 import React from 'react';
 import { withRouter } from '../withRouter';
 
+
 class AddContact extends React.Component {
     state = {
         name: "",
@@ -10,6 +11,11 @@ class AddContact extends React.Component {
         e.preventDefault();
         if(this.state.name === "" || this.state.number === ""){
             alert("You must fill in all fields");
+            return;
+        }
+        var phone = this.state.number;
+        if( !(phone.match('[0-9]{10}')) ){
+            alert('Please provide valid phone number');
             return;
         }
         this.props.addContactHandler(this.state);
